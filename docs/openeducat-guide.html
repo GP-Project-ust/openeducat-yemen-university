@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>دليل توليد بيانات جامعة يمنية واقعية في OpenEduCat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ Crystal Blue — دليل عربي RTL (Creative Flow) ============ */
+@page { size: 720px 1020px; margin: 0; }
+:root{
+  /* غلاف (داكن) */
+  --cv-bg:#0a1628; --cv-accent:#4da8da; --cv-text:#e8f0f8; --cv-muted:#7a9bb8; --cv-glow:#2d7ab3;
+  /* جسم (فاتح — نفس العائلة 215°) */
+  --bg:#f5f8fc; --section:#edf2f9; --card:#e4ecf5; --stripe:#eef3fa;
+  --header:#1a4a7a; --border:#c0d0e2; --accent:#2d7ab3; --text:#142840; --muted:#5a7a96;
+}
+html,body{
+  margin:0; padding:0; width:720px;
+  background:var(--bg); color:var(--text);
+  font-family:'Noto Naskh Arabic','Noto Sans Arabic',serif;
+  font-size:15px; line-height:1.95;
+}
+@media screen{
+  html{ height:auto; display:flex; justify-content:center; background:#1c2735; }
+  body{ margin:18px auto; box-shadow:0 0 50px rgba(0,0,0,.45); }
+}
+*{ box-sizing:border-box; }
+p,td,li,div{ overflow-wrap:break-word; word-break:normal; }
+
+/* ---------- 1) الغلاف ---------- */
+.cover{
+  width:720px; height:1020px; position:relative; background:var(--cv-bg);
+  break-after:page; overflow:hidden;
+}
+.cover .glow1,.cover .glow2{ position:absolute; border-radius:50%; }
+.cover .glow1{ width:420px; height:420px; top:0; left:0;
+  background:radial-gradient(circle at 20% 20%,rgba(45,122,179,.16) 0%,rgba(45,122,179,0) 68%); }
+.cover .glow2{ width:520px; height:520px; bottom:0; right:0;
+  background:radial-gradient(circle at 80% 80%,rgba(77,168,218,.12) 0%,rgba(77,168,218,0) 66%); }
+.cover .frame{ position:absolute; top:60px; bottom:60px; right:40px; left:40px;
+  border:2px solid rgba(77,168,218,.75); pointer-events:none; }
+.cover .content{ position:absolute; top:0; right:0; left:0; height:1020px; }
+.cover .kicker-ar{ position:absolute; top:134px; right:104px;
+  font-family:'Cairo',sans-serif; font-weight:700; font-size:13px; color:var(--cv-accent); }
+.cover .kicker-en{ position:absolute; top:162px; right:104px;
+  font-family:'Cairo',sans-serif; font-weight:600; font-size:10px; color:var(--cv-muted);
+  letter-spacing:5px; text-transform:uppercase; direction:ltr; text-align:right; }
+.cover .hero{ position:absolute; top:240px; right:104px; left:104px;
+  font-family:'Cairo',sans-serif; font-weight:900; font-size:44px; line-height:1.3;
+  color:var(--cv-text); text-shadow:0 0 26px rgba(77,168,218,.35); }
+.cover .hero .thin{ font-weight:600; color:var(--cv-accent); font-size:30px; }
+.cover .summary{ position:absolute; top:478px; right:104px; width:470px;
+  font-size:14.5px; line-height:2.05; color:var(--cv-muted); text-align:justify; }
+.cover .stats{ position:absolute; top:662px; right:104px; left:104px;
+  display:flex; gap:14px; }
+.cover .stat{ flex:1 1 0; min-width:90px; max-width:100%;
+  border:1px solid rgba(77,168,218,.35); border-radius:10px; padding:12px 10px 10px;
+  text-align:center; background:rgba(45,122,179,.08); }
+.cover .stat .n{ font-family:'Cairo',sans-serif; font-weight:800; font-size:24px;
+  color:var(--cv-text); line-height:1.2; }
+.cover .stat .l{ font-family:'Cairo',sans-serif; font-weight:600; font-size:11.5px;
+  color:var(--cv-accent); margin-top:2px; }
+.cover .meta{ position:absolute; top:795px; right:104px; left:104px;
+  display:flex; flex-wrap:wrap; gap:8px; max-width:100%; }
+.cover .chip{ border:1px solid rgba(122,155,184,.5); border-radius:20px;
+  padding:3px 14px; font-family:'Cairo',sans-serif; font-weight:600; font-size:11.5px;
+  color:var(--cv-muted); }
+.cover .foot-r{ position:absolute; bottom:116px; right:104px;
+  font-family:'Cairo',sans-serif; font-weight:600; font-size:11px; color:var(--cv-muted); }
+.cover .foot-l{ position:absolute; bottom:116px; left:104px; direction:ltr;
+  font-family:'Cairo',sans-serif; font-weight:600; font-size:10px; color:var(--cv-muted);
+  letter-spacing:3px; text-transform:uppercase; }
+
+/* ---------- 2) هيكل المحتوى المتدفق ---------- */
+.main-content{ padding:56px 64px 44px 64px; background:var(--bg); }
+.chapter-header{ break-after:avoid; break-inside:avoid; margin-top:26px; margin-bottom:14px; }
+.chapter-header.first{ margin-top:0; }
+.section-tag{ font-family:'Cairo',sans-serif; font-weight:700; font-size:12px;
+  color:var(--accent); margin-bottom:4px; }
+.section-title{ font-family:'Cairo',sans-serif; font-weight:800; font-size:25px;
+  color:var(--header); line-height:1.45; }
+.divider{ width:74px; height:3px; border-radius:2px; margin-top:8px;
+  background:linear-gradient(270deg,var(--accent),rgba(45,122,179,0)); }
+.p{ margin:0 0 12px; text-align:justify; }
+.p strong,.li-strong{ color:var(--header); }
+.lead{ font-size:15.5px; }
+ul.ar{ margin:0 0 12px; padding-right:22px; }
+ul.ar li{ margin-bottom:6px; break-inside:avoid; }
+
+/* بطاقات */
+.card{ background:#fff; border:1px solid var(--border); border-right:3px solid var(--accent);
+  border-radius:10px; padding:14px 16px 12px; margin-bottom:12px;
+  break-inside:avoid; }
+.card .c-title{ font-family:'Cairo',sans-serif; font-weight:700; font-size:15px;
+  color:var(--header); margin-bottom:6px; }
+.card .c-body{ font-size:14px; line-height:1.9; }
+.note{ background:var(--card); border:1px solid var(--border); border-right:3px solid var(--accent);
+  border-radius:10px; padding:12px 16px; margin:12px 0; break-inside:avoid; font-size:14px; }
+.note .n-title{ font-family:'Cairo',sans-serif; font-weight:700; color:var(--header);
+  margin-bottom:4px; font-size:14px; }
+.danger{ background:#e9f0f7; border:1px solid var(--border); border-right:4px solid var(--header);
+  border-radius:10px; padding:12px 16px; margin:12px 0; break-inside:avoid; font-size:14px; }
+.danger .n-title{ font-family:'Cairo',sans-serif; font-weight:800; color:var(--header); }
+
+/* أوامر برمجية */
+pre.cmd{
+  direction:ltr; text-align:left; unicode-bidi:isolate;
+  background:#0d1f33; color:#d8e7f5; border-radius:9px;
+  padding:12px 15px; margin:10px 0 14px; break-inside:avoid;
+  font-family:'DejaVu Sans Mono','Liberation Mono',monospace;
+  font-size:12px; line-height:1.65; white-space:pre-wrap;
+  border:1px solid #1a3a5c;
+}
+pre.cmd .c{ color:#7a9bb8; }
+pre.cmd .hl{ color:#7fd4ff; }
+code.k{
+  direction:ltr; unicode-bidi:isolate; display:inline-block;
+  font-family:'DejaVu Sans Mono','Liberation Mono',monospace; font-size:.88em;
+  background:var(--card); color:var(--header); border-radius:5px; padding:0 6px;
+  border:1px solid var(--border);
+}
+
+/* جداول */
+table.t{ width:100%; border-collapse:collapse; margin:10px 0 16px;
+  font-size:13px; line-height:1.75; }
+table.t thead{ display:table-header-group; }
+table.t tr{ break-inside:avoid; }
+table.t th{ background:var(--header); color:#fff; font-family:'Cairo',sans-serif;
+  font-weight:700; font-size:12.5px; padding:7px 10px; text-align:right;
+  border:1px solid var(--header); }
+table.t td{ border:1px solid var(--border); padding:6px 10px; vertical-align:top; }
+table.t tbody tr:nth-child(odd){ background:var(--stripe); }
+table.t tbody tr:nth-child(even){ background:#fff; }
+table.t .ok{ color:var(--header); font-weight:600; }
+table.t .bad{ color:#8a3838; font-weight:600; }
+table.t code, table.t .mono{ direction:ltr; unicode-bidi:isolate; display:inline-block;
+  font-family:'DejaVu Sans Mono','Liberation Mono',monospace; font-size:11.5px; }
+
+/* خطوات مرقمة */
+.step{ display:flex; gap:12px; margin-bottom:12px; break-inside:avoid; }
+.step .no{ flex:0 0 34px; height:34px; border-radius:50%; background:var(--header);
+  color:#fff; font-family:'Cairo',sans-serif; font-weight:800; font-size:15px;
+  display:flex; align-items:center; justify-content:center; margin-top:2px; }
+.step .s-body{ flex:1 1 auto; min-width:0; }
+.step .s-title{ font-family:'Cairo',sans-serif; font-weight:700; font-size:15px;
+  color:var(--header); margin-bottom:4px; }
+.step .s-text{ font-size:14px; line-height:1.9; }
+
+/* مخطط معماري */
+.diagram{ background:var(--section); border:1px solid var(--border); border-radius:12px;
+  padding:18px 16px 14px; margin:14px 0 6px; break-inside:avoid; }
+.dg-title{ font-family:'Cairo',sans-serif; font-weight:700; font-size:13.5px;
+  color:var(--header); text-align:center; margin-bottom:12px; }
+.dg-row{ display:flex; justify-content:center; gap:12px; max-width:100%; }
+.dg-node{ background:#fff; border:1.5px solid var(--accent); border-radius:9px;
+  padding:8px 10px; text-align:center; min-width:86px; max-width:100%; flex:0 1 auto; }
+.dg-node .t{ font-family:'Cairo',sans-serif; font-weight:700; font-size:13px;
+  color:var(--text); line-height:1.5; }
+.dg-node .m{ direction:ltr; unicode-bidi:isolate; display:inline-block;
+  font-family:'DejaVu Sans Mono',monospace; font-size:10.5px; color:var(--muted); }
+.dg-node.phase{ background:var(--card); border-color:var(--header); }
+.dg-link{ display:flex; flex-direction:column; align-items:center; padding:2px 0; }
+.dg-link .stem{ width:2px; height:14px; background:var(--accent); }
+.dg-link .head{ width:0; height:0; border-right:5px solid transparent;
+  border-left:5px solid transparent; border-top:6px solid var(--accent); }
+.dg-cap{ font-size:12px; color:var(--muted); text-align:center; margin:8px 0 4px; }
+
+/* صفحة الختام */
+.ending{
+  width:720px; height:1020px; background:var(--cv-bg); position:relative;
+  break-before:page; overflow:hidden;
+}
+.ending .frame{ position:absolute; top:60px; bottom:60px; right:40px; left:40px;
+  border:2px solid rgba(77,168,218,.55); }
+.ending .mid{ position:absolute; top:0; right:0; left:0; height:1020px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:0 110px; text-align:center; }
+.ending .e-kicker{ font-family:'Cairo',sans-serif; font-weight:700; font-size:13px;
+  color:var(--cv-accent); margin-bottom:16px; }
+.ending .e-title{ font-family:'Cairo',sans-serif; font-weight:800; font-size:30px;
+  color:var(--cv-text); line-height:1.6; margin-bottom:18px; }
+.ending .e-text{ font-size:14px; line-height:2.05; color:var(--cv-muted); margin-bottom:26px; }
+.ending .e-cmd{ direction:ltr; text-align:left; width:100%; background:rgba(13,31,51,.9);
+  border:1px solid #1a3a5c; color:#d8e7f5; border-radius:9px; padding:12px 16px;
+  font-family:'DejaVu Sans Mono',monospace; font-size:11.5px; line-height:1.8;
+  white-space:pre-wrap; }
+.ending .e-foot{ position:absolute; bottom:120px; right:0; left:0; text-align:center;
+  font-family:'Cairo',sans-serif; font-weight:600; font-size:10.5px; color:var(--cv-muted); }
+</style>
+</head>
+<body>
+
+<!-- ==================== الغلاف ==================== -->
+<div class="cover">
+  <div class="glow1"></div>
+  <div class="glow2"></div>
+  <div class="frame"></div>
+  <div class="content">
+    <div class="kicker-ar">دليل تشغيل تقني شامل — الخطوة بخطوة</div>
+    <div class="kicker-en">OPENEDUCAT COMMUNITY · ODOO 17</div>
+    <div class="hero">توليد بيانات<br>جامعة يمنية واقعية<br><span class="thin">في نظام OpenEduCat</span></div>
+    <div class="summary">
+      منهجية كاملة لملء قاعدة بيانات OpenEduCat بمحاكاة جامعة يمنية عبر خمس سنوات
+      أكاديمية، بأسماء طلاب وأساتذة يمنية واقعية وكليات ودفعات وامتحانات ورسوم —
+      عبر واجهة XML-RPC الآمنة دون أي كتابة مباشرة في قاعدة البيانات، مع خطة
+      نسخ احتياطي وحذف عكسي مضمّنة في السكريبت المرفق.
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">5000+</div><div class="l">طالب مسجل</div></div>
+      <div class="stat"><div class="n">24</div><div class="l">برنامجاً أكاديمياً</div></div>
+      <div class="stat"><div class="n">5</div><div class="l">سنوات أكاديمية</div></div>
+      <div class="stat"><div class="n">0</div><div class="l">أوامر SQL مباشرة</div></div>
+    </div>
+    <div class="meta">
+      <span class="chip">Odoo 17 Community</span>
+      <span class="chip">OpenEduCat Core</span>
+      <span class="chip">XML-RPC API</span>
+      <span class="chip">Docker</span>
+      <span class="chip">السنوات 2021/22 – 2025/26</span>
+    </div>
+    <div class="foot-r">إعداد: Z.ai — سبتمبر 2026</div>
+    <div class="foot-l">Yemen University ERP Simulation</div>
+  </div>
+</div>
+
+<!-- ==================== المحتوى ==================== -->
+<div class="main-content">
+
+<!-- ======== 1. مقدمة ======== -->
+<div class="chapter-header first">
+  <div class="section-tag">الفصل الأول</div>
+  <div class="section-title">مقدمة: الهدف والمنهجية</div>
+  <div class="divider"></div>
+</div>
+
+<p class="p lead">
+تحتاج أي جامعة تفكر في إدارة شؤونها الأكاديمية عبر OpenEduCat إلى رؤية واضحة
+لكيف يبدو النظام وهو «حي»: شاشات مليئة بالطلاب، دفعات دراسية حقيقية، امتحانات
+بدرجات منطقية، وكشوف نتائج قابلة للعرض والفحص. النظام الفارغ لا يكشف شيئاً من
+ذلك؛ فالتقارير تبدو معطلة، والشاشات بيضاء، ولا يمكن اختبار الصلاحيات أو تدريب
+موظفي شؤون الطلاب على بيانات وهمية منظمة. هذا الدليل يحل المشكلة من جذورها:
+توليد محاكاة كاملة لجامعة يمنية عبر خمس سنوات أكاديمية، بأرقام قيد يمنية،
+وهواتف تبدأ بـ <code class="k">+967</code>، وكليات ومعايير تقييم مطابقة
+للواقع الجامعي اليمني.
+</p>
+
+<p class="p">
+نقطة الانطلاق في هذا الدليل هي مبدأ واحد لا حياد عنه، سنسميه
+<strong>القاعدة الذهبية</strong>: كل عملية كتابة تمر عبر طبقة ORM الخاصة
+بأودو — أي عبر المسار الرسمي نفسه الذي تستخدمه واجهة الويب — ولا شيء غير ذلك.
+الكتابة المباشرة في جداول PostgreSQL بأوامر SQL تتجاوز هذه الطبقة، فتفتت
+تكامل البيانات المرجعية، وتتجاهل القيود المنطقية المعرّفة في نماذج Python،
+وقد تفسد التسلسلات والمعرّفات الداخلية التي يعتمد عليها النظام. السكريبت
+المرفق مع هذا الدليل يلتزم بهذه القاعدة حرفياً: يستدعي
+<code class="k">create</code> و<code class="k">write</code> عبر واجهة
+XML-RPC تماماً كما تفعل متصفحات المستخدمين.
+</p>
+
+<div class="note">
+<div class="n-title">ماذا يولّد السكريبت المرفق؟</div>
+خمس سنوات أكاديمية بعشرة فصول دراسية، وعشر كليات بأربعة وعشرين قسماً
+علمياً وبرنامج بكالوريوس، وحوالي 624 مادة دراسية بخرائطها، و120 دفعة
+(كل برنامج بخمس سنوات قبول)، ونحو 250 عضو هيئة تدريس، وآلاف الطلاب بأرقام
+قيد فريدة تبدأ بـ <code class="k">YU</code> مع سجلات قبول مقترنة، وجلسات
+امتحانات نهائية بدرجات موزعة توزيعاً واقعياً مع كشوف نتائج وسلم تقديرات
+يمني (ممتاز / جيد جداً / جيد / مقبول / راسب)، ودفعات رسوم دراسية لكل طالب.
+</div>
+
+<p class="p">
+بُني الدليل ليناسب حالتك تحديداً: نظام Odoo 17 بنسخة OpenEduCat Community
+يعمل داخل Docker على قاعدة بيانات فارغة. ستجد هنا مقارنة صريحة بين طرق
+التوليد الممكنة لتفهم لماذا اخترنا XML-RPC، ثم خريطة كاملة لنماذج البيانات
+كما هي في كود OpenEduCat نفسه (لا نظريات عامة)، ثم خطوات تحضير Docker
+وتشغيل السكريبت أمراً بأمر، وخطة أمان من ثلاث طبقات تشمل النسخ الاحتياطي
+والاستئناف والحذف العكسي، وأخيراً جداول الأداء واستكشاف الأخطاء. سيرافقك
+عبر الدليل ملفان مساعدان: السكريبت
+<code class="k">openeducat_yemen_generator.py</code> وسيرفر اختبار وهمي
+<code class="k">mock_odoo_server.py</code> تبرّب عليهما دون لمس نظامك الحقيقي.
+</p>
+
+<div class="note">
+<div class="n-title">الحزمة الجاهزة: أمر واحد بدل التحضير كله</div>
+يرافق هذا الدليل مستودع GitHub متكامل يجمع كل المكونات في مكان واحد:
+ملف <code class="k">docker-compose.yml</code> يرفع PostgreSQL 16 وخدمة
+أودو 17 في صورة مبنية مسبقاً تتضمن وحدات OpenEduCat الأربع مثبتة، مع ضبط
+اللغة العربية للواجهة بالكامل (اتجاه يمين-يسار وترجمة القوائم)، وعملة
+الريال اليمني، ونسخة قاعدة بيانات محمّلة سلفاً ببيانات الجامعة اليمنية
+المولّدة — أي أن الأوامر الثلاثة التالية تختصر الفصول من الرابع حتى
+التاسع كاملة:
+<pre class="cmd">git clone https://github.com/mutawakel-hub/openeducat-yemen-university.git
+cd openeducat-yemen-university
+docker compose up -d
+<span class="c"># ثم افتح المتصفح: http://localhost:8069  — admin / admin</span></pre>
+إن كنت تبدأ من الصفر فالحزمة الجاهزة هي نقطة الانطلاق الموصى بها، أما إن
+كان لديك نظام قائم فعلاً فتابع الفصول التالية كما هي — السكريبت يعمل على
+أي تثبيت OpenEduCat 17 كيفما أُقيم، داخل Docker أو خارجه.
+</div>
+
+<!-- ======== 2. مقارنة الطرق ======== -->
+<div class="chapter-header">
+  <div class="section-tag">الفصل الثاني</div>
+  <div class="section-title">مقارنة الطرق: لماذا XML-RPC؟</div>
+  <div class="divider"></div>
+</div>
+
+<p class="p">
+أمامك عملياً خمس طرق لملء قاعدة OpenEduCat ببيانات تجريبية، وهي تتفاوت
+تبايناً كبيراً في الأمان والسرعة وقابلية الاستئناف. الجدول التالي يلخص
+الصورة كاملة قبل أن نفصل في التوصية. لاحظ أن معيار «الأمان» هنا يعني
+احترام طبقة ORM وقواعد التكامل المرجعي التي يفرضها كود OpenEduCat،
+ومعيار «الاستئناف» يعني إمكانية إيقاف العمل وإكماله لاحقاً دون تكرار
+أو تعارض.
+</p>
+
+<table class="t">
+<thead><tr><th style="width:19%">الطريقة</th><th style="width:13%">الأمان</th><th style="width:13%">السرعة</th><th style="width:15%">الاستئناف</th><th>الحكم</th></tr></thead>
+<tbody>
+<tr><td><strong>XML-RPC / API</strong></td><td class="ok">ممتاز</td><td>جيد جداً</td><td class="ok">مدمج</td>
+<td>المسار المعتمد في هذا الدليل: يعمل من أي جهاز يشاهد السيرفر، يمر عبر ORM بالكامل، ويدعم التشغيل المجزأ والحذف العكسي عبر الـmanifest.</td></tr>
+<tr><td><strong>Odoo Shell</strong></td><td class="ok">ممتاز</td><td class="ok">الأسرع</td><td>يدوي</td>
+<td>بديل ممتاز لمن لديه وصول SSH للحاوية، لكنه يتطلب نسخ السكريبت داخل Docker وتعديل قالب الكود لبيئة <code>self.env</code>، ويصعب تشغيله من خارج السيرفر.</td></tr>
+<tr><td><strong>استيراد CSV</strong></td><td>متوسط</td><td>متوسط</td><td>ضعيف</td>
+<td>مناسب للجهات القليلة (طلاب فقط مثلاً)، لكنه يتعثر مع العلاقات المتشابكة (مواد، دفعات، نتائج) ويكرر السجلات عند كل استيراد جديد.</td></tr>
+<tr><td><strong>بيانات Demo</strong></td><td>متوسط</td><td>سريع</td><td>لا يوجد</td>
+<td>تُحمّل عند إنشاء القاعدة فقط ببيانات إنجليزية عامة لا علاقة لها بالسياق اليمني، ولا يمكن تشغيلها لاحقاً على قاعدة قائمة.</td></tr>
+<tr><td><strong>SQL مباشر</strong></td><td class="bad">خطر</td><td class="ok">الأسرع</td><td>لا يوجد</td>
+<td>محظور في هذا الدليل: يتجاوز ORM وقيوده، يفسد التسلسلات والحقول المحسوبة، وقد يجعل القاعدة غير قابلة للترقية أو الاستعادة السليمة.</td></tr>
+</tbody>
+</table>
+
+<p class="p">
+اختيار XML-RPC لحالتك تحديداً له ثلاثة أسباب عملية. أولاً، نظامك يعمل داخل
+Docker، وواجهة XML-RPC مكشوفة على منفذ الشبكة أصلاً، فلا تحتاج نسخ ملفات
+داخل الحاوية أو فتح جلسات SSH — تشغّل السكريبت من أي جهاز على الشبكة
+ونقطة النهاية هي <code class="k">http://SREVER:8069/xmlrpc/2/object</code>.
+ثانياً، الاستدعاءات تجري بحساب مستخدم عادي خاضع لقواعد الصلاحيات نفسها،
+فأي خطأ في البيانات يظهر كرسالة واضحة قابلة للتصحيح بدل فساد صامت في
+الجداول. ثالثاً، وهو الأهم، خطة الأمان في الفصل الثامن (النسخ الاحتياطي
+قبل، والاستئناف أثناء، والحذف العكسي بعد) مصممة على هذا المسار، ما يمنحك
+تجربة قابلة للإعادة من أول محاولة.
+</p>
+
+<div class="danger">
+<div class="n-title">لماذا نمنع SQL المباشر منعاً باتاً؟</div>
+<p class="p" style="margin:0">
+جدول مثل <code class="k">op_student</code> مرتبط بجدول
+<code class="k">res_partner</code> بعلاقة تضمين، وحقوله المحسوبة
+والمادة الدراسية للمادة الواحدة تُدار عبر جداول علائقية وسيطة
+(<code class="k">ir_property</code>، <code class="k">ir_translation</code>،
+جداول M2M). إدخال صفوف بـ INSERT يتجاهل كل ذلك، فينشأ «طالب» بلا شريك
+بريدي صالح أو «مادة» بلا روابطها، وتتعطل الشاشات التي تعتمد تلك العلاقات.
+الإصلاح عندئذ أصعب بكثير من التوليد الصحيح من البداية.
+</p>
+</div>
+
+<!-- ======== 3. معمارية البيانات ======== -->
+<div class="chapter-header">
+  <div class="section-tag">الفصل الثالث</div>
+  <div class="section-title">معمارية بيانات OpenEduCat</div>
+  <div class="divider"></div>
+</div>
+
+<p class="p">
+قبل أي توليد، لا بد من فهم الهيكل الذي سنسكب فيه البيانات، لأن OpenEduCat
+نظام علائقي متسلسل: كل كيان يُبنى فوق سابقه. استخرجنا المخطط التالي من كود
+النسخة 17 Community نفسها (مستودع OpenEduCat الرسمي)، لذا أسماء النماذج
+والحقول هنا هي الأسماء الفعلية التي يستدعيها السكريبت — لا مفاهيم مجردة.
+الشكل يوضح المسارين المتوازيين: مسار البنية الأكاديمية من أعلى إلى أسفل،
+ومسار حياة الطالب من القبول حتى النتيجة والرسوم.
+</p>
+
+<div class="diagram">
+  <div class="dg-title">خريطة الكيانات: البنية الأكاديمية ومسار حياة الطالب</div>
+  <div class="dg-row">
+    <div class="dg-node"><div class="t">السنة الأكاديمية</div><div class="m">op.academic.year</div></div>
+    <div class="dg-node"><div class="t">الفصل الدراسي</div><div class="m">op.academic.term</div></div>
+  </div>
+  <div class="dg-link"><div class="stem"></div><div class="head"></div></div>
+  <div class="dg-row">
+    <div class="dg-node"><div class="t">الكلية ثم القسم</div><div class="m">op.department (أب وابن)</div></div>
+    <div class="dg-node"><div class="t">البرنامج الأكاديمي</div><div class="m">op.course</div></div>
+    <div class="dg-node"><div class="t">المواد الدراسية</div><div class="m">op.subject</div></div>
+  </div>
+  <div class="dg-link"><div class="stem"></div><div class="head"></div></div>
+  <div class="dg-row">
+    <div class="dg-node"><div class="t">الدفعة</div><div class="m">op.batch</div></div>
+    <div class="dg-node"><div class="t">هيئة التدريس</div><div class="m">op.faculty</div></div>
+    <div class="dg-node phase"><div class="t">سجل القبول</div><div class="m">op.admission.register</div></div>
+  </div>
+  <div class="dg-link"><div class="stem"></div><div class="head"></div></div>
+  <div class="dg-row">
+    <div class="dg-node phase"><div class="t">طلب القبول</div><div class="m">op.admission</div></div>
+    <div class="dg-node"><div class="t">الطالب</div><div class="m">op.student</div></div>
+    <div class="dg-node"><div class="t">قيد الطالب بالدفعة</div><div class="m">op.student.course</div></div>
+  </div>
+  <div class="dg-link"><div class="stem"></div><div class="head"></div></div>
+  <div class="dg-row">
+    <div class="dg-node"><div class="t">جلسة الامتحان</div><div class="m">op.exam.session</div></div>
+    <div class="dg-node"><div class="t">الامتحان</div><div class="m">op.exam</div></div>
+    <div class="dg-node"><div class="t">نتيجة الطالب</div><div class="m">op.exam.attendees</div></div>
+    <div class="dg-node phase"><div class="t">كشف النتائج</div><div class="m">op.marksheet.line</div></div>
+  </div>
+  <div class="dg-link"><div class="stem"></div><div class="head"></div></div>
+  <div class="dg-row">
+    <div class="dg-node"><div class="t">دفعات الرسوم</div><div class="m">op.fees.terms</div></div>
+    <div class="dg-node"><div class="t">رسوم الطالب</div><div class="m">op.student.fees.details</div></div>
+  </div>
+  <div class="dg-cap">الصناديق المظللة: كيانات مسار الطالب المباشر — البقية: البنية الأكاديمية الحاملة</div>
+</div>
+
+<p class="p">
+ثلاث ملاحظات جوهرية على هذه الخريطة توفر عليك ساعات من الحيرة. أولاً،
+«الكلية» في أودو ليست نموذجاً مستقلاً بل قسماً أب <code class="k">op.department</code>
+يتفرع منه قسم البرنامج، فنبني الكليات العشر كآباء والأقسام العلمية أبناءً
+لها. ثانياً، الطالب والأستاذ كلاهما «متضمَّن» في نموذج الشريك
+<code class="k">res.partner</code> عبر آلية <code class="k">_inherits</code>؛
+أي أن الاسم والهاتف والبريد والعنوان حقول شريكية تُمرر مباشرة عند إنشاء
+الطالب، وهو ما يستغله السكريبت لإنشاء ملفات كاملة بمقايس واحد. ثالثاً،
+تسجيل الطالب في برنامج ما لا يتم على نموذج الطالب نفسه بل عبر سجل قيد
+مستقل <code class="k">op.student.course</code> يربط الطالب بالبرنامج
+والدفعة ورقم الدور ورقم القيد — وهذا ما يجعل القيود قابلة للفرادة على
+مستوى كل دفعة.
+</p>
+
+<p class="p">
+الجدول التالي يعرض أبرز النماذج مع حقولها الإلزامية التي يلبيها السكريبت
+تلقائياً، والقيود المنطقية التي يراعيها. احتفظ به مرجعاً سريعاً عند أي
+تعديل مستقبلي على بياناتك، أو عند فحص السجلات من شاشة «التقنيات:
+النماذج» في وضع المطور.
+</p>
+
+<table class="t">
+<thead><tr><th style="width:24%">النموذج</th><th style="width:22%">الغرض</th><th>أبرز الحقول الإلزامية والقيود</th></tr></thead>
+<tbody>
+<tr><td><code>op.academic.year</code></td><td>السنة الأكاديمية</td>
+<td><span class="mono">name, start_date, end_date</span> — وبنية الفصول (فصلان افتراضياً).</td></tr>
+<tr><td><code>op.academic.term</code></td><td>الفصل الدراسي</td>
+<td><span class="mono">name, term_start_date, term_end_date, academic_year_id</span>.</td></tr>
+<tr><td><code>op.department</code></td><td>الكلية / القسم</td>
+<td><span class="mono">name, code</span> — العلاقة الأب/الابن تبني التسلسل الهرمي للكليات.</td></tr>
+<tr><td><code>op.course</code></td><td>البرنامج الأكاديمي</td>
+<td><span class="mono">name, code (فريد، 16 حرفاً)</span> — نوع التقييم (GPA/Normal) والمواد المرتبطة.</td></tr>
+<tr><td><code>op.batch</code></td><td>الدفعة</td>
+<td><span class="mono">code (فريد، 16), name (32), start_date, end_date, course_id</span> — تاريخ النهاية بعد البداية.</td></tr>
+<tr><td><code>op.subject</code></td><td>المادة</td>
+<td><span class="mono">name, code (فريد)</span> — النوع نظري/عملي والإجبارية/الاختيارية.</td></tr>
+<tr><td><code>op.faculty</code></td><td>الأستاذ</td>
+<td><span class="mono">first_name, last_name, birth_date, gender, partner_id</span> — قيم النوع <span class="mono">male/female</span> وميلاد لا يتجاوز اليوم.</td></tr>
+<tr><td><code>op.student</code></td><td>الطالب</td>
+<td><span class="mono">gender, partner_id</span> — رقم القيد <span class="mono">gr_no</span> فريد على مستوى النظام بأكمله.</td></tr>
+<tr><td><code>op.student.course</code></td><td>قيد الطالب</td>
+<td><span class="mono">course_id</span> — فرادة رقم الدور والطالب لكل (برنامج + دفعة).</td></tr>
+<tr><td><code>op.admission.register</code></td><td>سجل القبول</td>
+<td><span class="mono">name, dates, course_id, product_id</span> — منتج خدمي إلزامي (يُنشأ تلقائياً إن لم يوجد).</td></tr>
+<tr><td><code>op.admission</code></td><td>طلب القبول</td>
+<td><span class="mono">name, first/last_name, birth_date, course_id, email, gender, register_id</span> — تاريخ الطلب داخل نافذة السجل، والعمر فوق الحد الأدنى.</td></tr>
+<tr><td><code>op.exam.session / op.exam</code></td><td>الامتحانات</td>
+<td><span class="mono">exam_code (فريد)</span> — توقيت الامتحان داخل نافذة الجلسة، ودرجة النجاح لا تتجاوز الدرجة الكلية.</td></tr>
+<tr><td><code>op.exam.attendees</code></td><td>نتيجة طالب في امتحان</td>
+<td><span class="mono">student_id, exam_id</span> — فرادة الثنائي، والدرجة بين صفر والدرجة الكلية.</td></tr>
+<tr><td><code>op.marksheet.line</code></td><td>كشف نتائج الطالب</td>
+<td>يجمع سطور النتائج ويحسب المجموع والنسبة والتقدير تلقائياً عند التوليد بـ XML-RPC.</td></tr>
+<tr><td><code>op.fees.terms</code></td><td>جدول الدفعات</td>
+<td>نسب الدفعات يجب أن تساوي 100% مجتمعة — يستخدمها السكريبت بدفعتي 50% + 50%.</td></tr>
+</tbody>
+</table>
+
+
+<!-- ======== 4. المتطلبات والتحضير ======== -->
+<div class="chapter-header">
+  <div class="section-tag">الفصل الرابع</div>
+  <div class="section-title">المتطلبات والتحضير (Docker)</div>
+  <div class="divider"></div>
+</div>
+
+<p class="p">
+التحضير الصحيح يقصر زمن التشغيل الفعلي إلى دقائق، ويحصر الأعطال المحتملة في
+أسباب قليلة معروفة سلفاً. تحقق من البنود الخمسة التالية بالترتيب، ولا تتجاوز
+أياً منها: كل بند مبني على تجارب فعلية لمواطن الخلل الشائعة في منشآت
+Docker الجامعية. عند اكتمال القائمة تكون جاهزاً تماماً للفصل الخامس.
+</p>
+
+<div class="card">
+<div class="c-title">1) معرفة منفذ أودو المكشوف</div>
+<div class="c-body">
+افتح الطرفية على السيرفر وشغّل أمر عرض الحاويات والمنافذ، وابحث عن حاوية
+أودو والمنفذ المنشور أمامها (غالباً <code class="k">8069</code>):
+<pre class="cmd">docker ps --format "table {{.Names}}\t{{.Ports}}" | grep odoo</pre>
+اختبر الوصول من الجهاز الذي ستشغّل عليه السكريبت:
+<pre class="cmd">curl -s -o /dev/null -w "%{http_code}" http://SERVER_IP:8069/web/login
+<span class="c"># النتيجة المتوقعة: 200</span></pre>
+</div>
+</div>
+
+<div class="card">
+<div class="c-title">2) التأكد من تثبيت وحدات OpenEduCat الأربع</div>
+<div class="c-body">
+من قائمة التطبيقات في أودو تأكد أن هذه الوحدات «مثبتة» لا «قابلة للتثبيت»:
+<code class="k">OpenEduCat Core</code> (الطلاب والبنية)،
+<code class="k">OpenEduCat Admission</code> (القبولات)،
+<code class="k">OpenEduCat Exam</code> (الامتحانات والكشوف)،
+<code class="k">OpenEduCat Fees</code> (الرسوم). السكريبت يفحصها تلقائياً
+عند الاتصال ويعرض تقريراً بالنماذج المتاحة، ثم يتخطى بأمان أي مرحلة
+تعتمد وحدة غير مثبتة مع تحذير واضح — لذا لن يتعطل التشغيل أبداً بسبب
+وحدة ناقصة.
+</div>
+</div>
+
+<div class="card">
+<div class="c-title">3) إنشاء مستخدم API مخصص</div>
+<div class="c-body">
+من الإعدادات ثم المستخدمين أنشئ مستخدماً مثل <code class="k">api_generator</code>
+بمجموعة «الإعدادات» (Administration) وكلمة مرور قوية، واستخدمه في السكريبت
+بدل حساب admin اليومي. ميزة ذلك عملية تماماً: كل سجل يُنشأ يظهر باسم هذا
+المستخدم في سجل التدقيق، وبعد انتهاء التوليد يمكنك تعطيل الحساب بنقرة
+واحدة فتغلق باب الكتابة الآلية نهائياً.
+</div>
+</div>
+
+<div class="card">
+<div class="c-title">4) جاهزية Python على جهاز التشغيل</div>
+<div class="c-body">
+السكريبت ملف Python واحد <strong>بدون أي مكتبات خارجية</strong> — يستخدم
+مكتبة <code class="k">xmlrpc.client</code> المدمجة. أي جهاز عليه
+Python 3.8 أو أحدث يكفي (تحقق بـ <code class="k">python3 --version</code>)،
+سواء كان لابتوبك الشخصي أو السيرفر نفسه. لا يلزم تثبيت شيء على الإطلاق.
+</div>
+</div>
+
+<div class="card">
+<div class="c-title">5) بروفة بلا مخاطرة على السيرفر الوهمي</div>
+<div class="c-body">
+قبل لمس نظامك الحقيقي، جرّب الدورة كاملة على السيرفر الوهمي المرفق
+(<code class="k">mock_odoo_server.py</code>) الذي يحاكي نماذج OpenEduCat
+17 في الذاكرة تماماً:
+<pre class="cmd">python3 mock_odoo_server.py 8169
+<span class="c"># ثم من طرفية ثانية:</span>
+python3 openeducat_yemen_generator.py \
+  --url http://127.0.0.1:8169 --db mock \
+  --user admin --password admin --preset quick --yes</pre>
+سترى المراحل السبع تعمل أمامك وتقريراً نهائياً بالأعداد، ثم جرّب أمر
+الحذف العكسي <code class="k">--purge --yes</code> لتشاهد دورة الأمان
+كاملة دون أن يقترب أي بايت من قاعدة بياناتك الفعلية.
+</div>
+</div>
+
+<!-- ======== 5. التشغيل خطوة بخطوة ======== -->
+<div class="chapter-header">
+  <div class="section-tag">الفصل الخامس</div>
+  <div class="section-title">التشغيل خطوة بخطوة</div>
+  <div class="divider"></div>
+</div>
+
+<p class="p">
+التسلسل التالي مصمم بمبدأ «التدرج المؤكد»: نسخة احتياطية أولاً، ثم جولة
+صغيرة للتحقق من الشكل، ثم التوليد الكامل. لا تقفز إلى الخطوة الرابعة مهما
+بدا الإغراء — الجولة الصغيرة تكتشف أي خلل في الوحدات أو الصلاحيات خلال
+دقيقتين بدل اكتشافه بعد نصف ساعة من التوليد الكامل.
+</p>
+
+<div class="step">
+  <div class="no">1</div>
+  <div class="s-body">
+    <div class="s-title">خذ نسخة احتياطية كاملة — إلزامي</div>
+    <div class="s-text">
+    حدد اسم حاوية قاعدة البيانات (غالباً <code class="k">db</code>) ثم
+    نفّذ أمر النسخ الاحتياطي بصيغة الضغط المخصص السريع للاستعادة:
+    <pre class="cmd"><span class="c"># أ) ابحث عن اسم حاوية postgres وحاوية أودو:</span>
+docker ps --format "table {{.Names}}\t{{.Image}}"
+
+<span class="c"># ب) انسخ احتياطياً مضغوطاً باسم التاريخ:</span>
+docker exec -t db pg_dump -U odoo -Fc university \
+  &gt; backup_university_$(date +%F).dump</pre>
+    إذا كان اسم المستخدم أو القاعدة مختلفاً عندك (تجدهما في ملف
+    <code class="k">docker-compose.yml</code> تحت
+    <code class="k">POSTGRES_USER</code> و<code class="k">POSTGRES_DB</code>)
+    فعدّل الأمر بما يطابقها. بديل أسهل للمبتدئين: من شاشة أودو
+    «الإعدادات، النسخ الاحتياطي العام للقاعدة» نزّل نسخة كاملة zip.
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="no">2</div>
+  <div class="s-body">
+    <div class="s-title">انقل السكريبت إلى جهاز التشغيل</div>
+    <div class="s-text">
+    ضع <code class="k">openeducat_yemen_generator.py</code> في مجلد عمل
+    فارغ على الجهاز الذي س يشغّله (لابتوبك أو السيرفر نفسه). الملف مستقل
+    تماماً ولا يحتاج ملفات مرافقة. سينشئ هو بنفسه في مجلد التشغيل ملفين:
+    <code class="k">generation_report.txt</code> (سجل كامل بالعربية لكل
+    ما تم) و<code class="k">openeducat_manifest.json</code> (سجل معرّفات
+    كل ما أُنشئ — أساس الحذف العكسي لاحقاً)، فاحرص أن تبقى هذه الملفات
+    في مكان آمن بعد التوليد.
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="no">3</div>
+  <div class="s-body">
+    <div class="s-title">شغّل جولة التجربة السريعة أولاً</div>
+    <div class="s-text">
+    <pre class="cmd">python3 openeducat_yemen_generator.py \
+  --url http://SERVER_IP:8069 \
+  --db university \
+  --user api_generator --password 'STRONG_PASS' \
+  --preset quick --yes</pre>
+    سيعرض السكريبت أولاً «خطة التوليد» بالأعداد الدقيقة قبل أي كتابة، ثم
+    ينفذ المراحل السبع مرحلة بعد مرحلة مع زمن كل مرحلة. افتح بعدها واجهة
+    أودو وتجول: الطلاب بأرقام قيد تبدأ بـ <code class="k">YU</code>،
+    دفعات بأسماء مثل «دفعة 2021 - الطب»، وكشوف نتائج بتقديرات عربية.
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="no">4</div>
+  <div class="s-body">
+    <div class="s-title">التوليد الكامل للجامعة</div>
+    <div class="s-text">
+    إذا أعجبك شكل بيانات الجولة السريعة فشغّل الإعداد الكامل (5000+ طالب):
+    <pre class="cmd">python3 openeducat_yemen_generator.py \
+  --url http://SERVER_IP:8069 \
+  --db university \
+  --user api_generator --password 'STRONG_PASS' \
+  --preset full --yes</pre>
+    انتبه لخصلة لطيفة: الجولة السريعة لا تُحسب ضدها — السكريبت يستأنف
+    فيكمل ناقص الأعداد إلى الهدف الكامل دون تكرار أي سجل، لأن كل إنشاء
+    يسبقه فحص وجود بالمفتاح الفريد.
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="no">5</div>
+  <div class="s-body">
+    <div class="s-title">اقرأ التقرير واحتفظ بالـmanifest</div>
+    <div class="s-text">
+    عند الانتهاء يطبع ملخصاً بالمدة وعدد التحذيرات ومسار التقرير. راجع
+    التقرير كاملاً — أي سطر يبدأ بـ «تنبيه» يستحق نظرة (أشهرها: وحدة غير
+    مثبتة فتُخطت مرحلتها). ملف
+    <code class="k">openeducat_manifest.json</code> هو «بوليصة التأمين»
+    الخاصة بك: هو ما يمكّن أمر <code class="k">--purge</code> من حذف كل
+    ما أنشأه السكريبت بدقة جراحية في أي وقت لاحق.
+    </div>
+  </div>
+</div>
+
+<div class="note">
+<div class="n-title">انقطع الاتصال في منتصف التوليد؟ لا مشكلة إطلاقاً</div>
+أعد تشغيل الأمر نفسه كما هو. السكريبت مصمم للاستئناف الكامل: يعيد فحص
+الوجود بالمفاتيح الفريدة، يكمل الأعداد الناقصة فقط، ويتخطى ما أُنشئ مسبقاً
+بدقة إلى أن يصل الهدف — جرّبنا هذه الدورة فعلياً بمقاطعة متعمّدة أثناء
+الاختبار فارتفعت الجولة الثانية بـ «جديد: 0» في كل المراحل المكتملة.
+</div>
+
+<!-- ======== 6. خيارات السكريبت ======== -->
+<div class="chapter-header">
+  <div class="section-tag">الفصل السادس</div>
+  <div class="section-title">خيارات السكريبت كاملة</div>
+  <div class="divider"></div>
+</div>
+
+<p class="p">
+كل سلوك السكريبت قابل للضبط من سطر الأوامر دون تعديل الكود. الجدول التالي
+هو المرجع الكامل للوسائط؛ بعده شرح الإعدادين المسبقين وضبط الإعدادات
+الداخلية لمن يريد تحكماً أدق. ملاحظة أمنية مفيدة: بيانات الاتصال الأربع
+(<code class="k">--url</code> و<code class="k">--db</code>
+و<code class="k">--user</code> و<code class="k">--password</code>) يمكن
+تمريرها كمتغيرات بيئة بدلاً من سطر الأوامر حتى لا تبقى كلمة المرور في
+سجل الطرفية: <code class="k">ODOO_URL</code> و<code class="k">ODOO_DB</code>
+و<code class="k">ODOO_USER</code> و<code class="k">ODOO_PASSWORD</code>.
+</p>
+
+<table class="t">
+<thead><tr><th style="width:26%">الوسيطة</th><th>الوظيفة</th></tr></thead>
+<tbody>
+<tr><td><code>--preset quick | full</code></td><td>quick: جولة تجربة (200 طالب، امتحانات آخر سنة، نصف الحضور). full: الجامعة الكاملة (5000+ طالب وكل الامتحانات).</td></tr>
+<tr><td><code>--url / --db</code></td><td>رابط الخادم واسم القاعدة — واجبة إلا إذا وُجدت في متغيرات البيئة.</td></tr>
+<tr><td><code>--user / --password</code></td><td>مستخدم API وكلمة مروره (يُنصح بالمستخدم المخصص من الفصل الرابع).</td></tr>
+<tr><td><code>--target N</code></td><td>تجاوز العدد المستهدف للطلاب لأي رقم (مثلاً 8000 لمحاكاة جامعة حكومية كبيرة).</td></tr>
+<tr><td><code>--start-year / --end-year</code></td><td>نطاق السنوات الأكاديمية — الافتراضي 2021 إلى 2025.</td></tr>
+<tr><td><code>--dry-run</code></td><td>اعرض خطة التوليد بالأعداد والزمن المتوقع دون كتابة أي سجل واحد.</td></tr>
+<tr><td><code>--yes</code></td><td>تأكيد تلقائي لسؤال المتابعة (للأتمتة والجدولة الليلية).</td></tr>
+<tr><td><code>--only-phases 1,2,4</code></td><td>شغّل مراحل بعينها فقط — مفيد للإعادة أو الترقية الجزئية.</td></tr>
+<tr><td><code>--no-exams / --no-marksheets / --no-fees</code></td><td>تعطيل أحد المسارات الثقيلة عند الحاجة لتوليد بنية وطلاب فقط.</td></tr>
+<tr><td><code>--exam-years-back N</code></td><td>عدد السنوات الأكاديمية الأخيرة التي تغطيها الامتحانات (الافتراضي 2).</td></tr>
+<tr><td><code>--attendance-fraction 0.3</code></td><td>نسبة طلاب الدفعة المقيّدة في الامتحانات — لتخفيف حجم النتائج.</td></tr>
+<tr><td><code>--batch-size N</code></td><td>عدد السجلات في كل استدعاء XML-RPC (الافتراضي 100؛ ارفعه إلى 200 على خوادم قوية).</td></tr>
+<tr><td><code>--purge --yes</code></td><td>الحذف العكسي الكامل لكل ما أنشأه السكريبت — يقرأ الـmanifest ويمحو بالترتيب الآمن للتبعيات.</td></tr>
+<tr><td><code>--manifest PATH</code></td><td>مسار ملف الـmanifest إن أردت الاحتفاظ بأكثر من ملف لقواعد مختلفة.</td></tr>
+</tbody>
+</table>
+
+<div class="card">
+<div class="c-title">الإعدادان المسبقان بالأرقام</div>
+<div class="c-body">
+<table class="t" style="margin:6px 0 2px">
+<thead><tr><th>المعيار</th><th style="width:22%">quick</th><th style="width:22%">full</th></tr></thead>
+<tbody>
+<tr><td>الطلاب المستهدفون</td><td>200</td><td>5000+</td></tr>
+<tr><td>سنوات الامتحانات</td><td>آخر سنة</td><td>آخر سنتين</td></tr>
+<tr><td>نسبة الحضور في الامتحانات</td><td>50%</td><td>100%</td></tr>
+<tr><td>طلبات القبول المرفوضة</td><td>5%</td><td>8%</td></tr>
+<tr><td>كشوف النتائج والرسوم</td><td>مفعّلة</td><td>مفعّلة</td></tr>
+</tbody>
+</table>
+وللتخصيص الأدق: افتح رأس الملف وعدّل قاموس <code class="k">CONFIG</code>
+(بذرة العشوائية <code class="k">seed</code> لإعادة إنتاج نفس البيانات
+حرفياً، أو <code class="k">request_timeout</code> للشبكات البطيئة).
+</div>
+</div>
+
+<!-- ======== 7. مراحل التوليد السبع ======== -->
+<div class="chapter-header">
+  <div class="section-tag">الفصل السابع</div>
+  <div class="section-title">مراحل التوليد السبع</div>
+  <div class="divider"></div>
+</div>
+
+<p class="p">
+يعمل السكريبت بسبع مراحل مستقلة معزولة عن بعضها: تعطل أي مرحلة بخطأ
+لا يوقف البقية، بل يُسجّل بتحذير وتستمر بقية المراحل — ثم يكفي إعادة
+الأمر لتستأنف المرحلة المتعطلة من حيث توقفت. الأعداد أدناه للإعداد
+الكامل (5000 طالب) وتتناسب طردياً مع <code class="k">--target</code>.
+</p>
+
+<div class="card">
+<div class="c-title">المرحلة 1 — السنوات والفصول الأكاديمية</div>
+<div class="c-body">
+خمس سنوات أكاديمية (2021/22 حتى 2025/26) بحدود زمنية واقعية (سبتمبر
+إلى أغسطس)، ولكل سنة فصلان دراسيان (الأول: سبتمبر–يناير، والثاني:
+فبراير–يونيو). هذه المرحلة أساس كل ما بعدها: <strong>5 سنوات و10 فصول</strong>.
+</div>
+</div>
+
+<div class="card">
+<div class="c-title">المرحلة 2 — البنية الأكاديمية</div>
+<div class="c-body">
+عشر كليات (الطب البشري، طب الأسنان، الصيدلة، الهندسة، علوم الحاسبات،
+الشريعة والقانون، الآداب، العلوم التطبيقية، التجارة والاقتصاد، التربية)
+كأقسام أبو، و24 قسماً علمياً أبناء تحمل 24 برنامج بكالوريوس بخطط دراسية
+حقيقية المناهج: <strong>624 مادة</strong> موزعة على سنوات البرامج
+(الطب 6 سنوات والهندسة 5 والبكالوريوس 4)، و<strong>120 دفعة</strong>
+(كل برنامج × 5 سنوات قبول بأسماء مثل «دفعة 2021 - علوم الحاسوب»).
+</div>
+</div>
+
+<div class="card">
+<div class="c-title">المرحلة 3 — هيئة التدريس</div>
+<div class="c-body">
+نحو <strong>250 عضواً</strong> بتوزيع واقعي على الأقسام: أسماء يمنية
+رباعية بألقاب أكاديمية (أ.د، أ.م.د، د، م.م)، وتواريخ ميلاد وأقسام
+رئيسية ومواد تدريس مرتبطة، مع بريد جامعي وهاتف وبيان عنوان. نسبة
+الأستاذات تختلف واقعياً بين الكليات (أعلى في الآداب والطب عن الهندسة).
+</div>
+</div>
+
+<div class="card">
+<div class="c-title">المرحلة 4 — الطلاب وقيودهم</div>
+<div class="c-body">
+قلب المحاكاة: <strong>5000+ طالب</strong> بأسماء يمنية رباعية
+(الاسم، الأب، الجد، اللقب)، وأرقام قيد متسلسلة فريدة
+(<code class="k">YU2100001</code>)، وجنس وتاريخ ميلاد (17–21 سنة وقت
+القبول) وهاتف يمني وبريد إلكتروني منقح لاتينياً وعنوان بمدينة يمنية
+مرجحة (صنعاء الأكثر ثم عدن وتعز...). لكل طالب <strong>قيد</strong>
+يوثّق برنامجه ودفعته ورقم دوره ومواد سنته الأولى، وحالة «منتهٍ» تلقائياً
+للدفعات التي أكملت مدة البرنامج.
+</div>
+</div>
+
+<div class="card">
+<div class="c-title">المرحلة 5 — القبولات</div>
+<div class="c-body">
+<strong>120 سجل قبول</strong> (نافذة يوليو–سبتمبر لكل برنامج وكل سنة)
+مرتبطة بمنتج «الرسوم الدراسية» الخدمي الذي ينشئه السكريبت تلقائياً إن
+لم يجد منتجاً خدمياً قائماً — وهو متطلب إلزامي في نموذج سجل القبول.
+لكل طالب مقبول <strong>طلب قبول</strong> بحالة «منتهٍ» مرتبط بسجله
+الشخصي وتاريخ تقديم داخل النافذة وقيمة الرسوم حسب البرنامج، إضافة إلى
+نسبة طلبات مرفوضة (8%) تمنح حركة القبول واقعيتها في الشاشات والتقارير.
+</div>
+</div>
+
+<div class="card">
+<div class="c-title">المرحلة 6 — الامتحانات والنتائج</div>
+<div class="c-body">
+لكل دفعة وكل سنة دراسية <strong>جلسة امتحانات نهائية</strong> (مايو–يونيو)
+بستة امتحانات — واحد لكل مادة — بتوقيتات غير متعارضة داخل نافذة الجلسة
+ودرجات (100 كلي / 50 نجاح). تُقيَّد نتائج الطلاب حضوراً وغياً (غياب 4%)
+ودرجات بتوزيع طبيعي حول 66 بانحراف 13 — فينتج <strong>نحو 80 ألف نتيجة</strong>
+للإعداد الكامل مع كشوف نتائج للسنة الأخيرة تشتق التقدير تلقائياً
+(ممتاز/جيد جداً/جيد/مقبول/راسب) عبر سلم الدرجات اليمني.
+</div>
+</div>
+
+<div class="card">
+<div class="c-title">المرحلة 7 — الرسوم الدراسية</div>
+<div class="c-body">
+جدول دفعات فصلية (50% + 50% يحقق قيد المجموع 100% في النموذج)، ولكل
+طالب سطري رسوم لكل فصل من السنة الأخيرة بقيم واقعية تختلف بالبرنامج
+(الطب 1.8 مليون ريال سنوياً حتى الآداب 300 ألف). تُنشأ السطور بحالة
+«مسودة» — ويمكن لموظف الشؤون المالية توليد الفواتير المحاسبية منها
+بالزر الرسمي في OpenEduCat متى شاء، فتبقى مرحلة الفوترة تحت سيطرتك
+اليدوية الكاملة.
+</div>
+</div>
+
+
+<!-- ======== 8. خطة الأمان ======== -->
+<div class="chapter-header">
+  <div class="section-tag">الفصل الثامن</div>
+  <div class="section-title">خطة الأمان: نسخ، استئناف، حذف عكسي</div>
+  <div class="divider"></div>
+</div>
+
+<p class="p">
+صممنا تجربة التوليد على نموذج «طبقات الدفاع الثلاث»: طبقة قبل التوليد
+تحميك من الأسوأ، وطبقة أثناءه تمنع الفوضى عند أي انقطاع، وطبقة بعده
+تمنحك تراجعاً نظيفاً متى شئت. الطبقات الثلاث مجربة فعلياً — دورة
+«توليد كامل ثم حذف عكسي» أُجريت في الاختبار النهائي وانتهت بقاعدة
+نظيفة مئة بالمئة دون أي أثر متبقٍ.
+</p>
+
+<div class="card">
+<div class="c-title">الطبقة الأولى — قبل التوليد: النسخة الاحتياطية</div>
+<div class="c-body">
+مهما كان نظامك تجريبياً، خذ النسخة أولاً — عادة رخيصة الثمن تفيد حتى
+لو لم تحتجها قط:
+<pre class="cmd"><span class="c"># نسخة مضغوطة سريعة الاستعادة:</span>
+docker exec -t db pg_dump -U odoo -Fc university \
+  &gt; backup_university_$(date +%F).dump
+
+<span class="c"># الاستعادة عند الحاجة (توقف حاوية أودو أولاً):</span>
+docker exec -i db pg_restore -U odoo --clean --if-exists \
+  -d university &lt; backup_university_2026-09-12.dump</pre>
+ولا تنس خيار «النسخ الاحتياطي العام» من واجهة أودو نفسها إن كنت تفضل
+ملف zip واحداً يحتوي الملفات المرفقة.
+</div>
+</div>
+
+<div class="card">
+<div class="c-title">الطبقة الثانية — أثناء التوليد: المعاينة والاستئناف</div>
+<div class="c-body">
+ثلاث ضمانات مدمجة في السكريبت تعمل لصالحك لحظة بلحظة:
+<ul class="ar" style="margin:4px 0 0">
+<li><span class="li-strong">المعاينة بلا كتابة:</span> شغّل بـ
+<code class="k">--dry-run</code> فترى الخطة كاملة بالأعداد والزمن
+المتوقع، ويبقى عدّاد سجلاتك صفراً.</li>
+<li><span class="li-strong">سؤال التأكيد:</span> قبل أي كتابة يعرض
+الخطة ويسألك؛ تجاوز السؤال ممكن فقط بوسيطة <code class="k">--yes</code>
+الصريحة.</li>
+<li><span class="li-strong">الاستئناف الآمن:</span> كل إنشاء يسبقه فحص
+وجود بالمفتاح الفريد (الرمز أو الاسم أو رقم القيد)، فالانقطاع والتكرار
+مستحيلان منطقياً — أعد الأمر نفسه فيكتمل الناقص فقط.</li>
+</ul>
+</div>
+</div>
+
+<div class="card">
+<div class="c-title">الطبقة الثالثة — بعد التوليد: الحذف العكسي الجراحي</div>
+<div class="c-body">
+ملف <code class="k">openeducat_manifest.json</code> يسجّل معرّف كل سجل
+أنشأه السكريبت لحظة بلحظة (حتى السطور الداخلية لسطور النتائج والدفعات).
+عند الرغبة في التراجع الكامل:
+<pre class="cmd">python3 openeducat_yemen_generator.py \
+  --url http://SERVER_IP:8069 --db university \
+  --user api_generator --password 'STRONG_PASS' \
+  --purge --yes</pre>
+يمحو السجلات بالترتيب العكسي للتبعيات (سطور النتائج قبل الكشوف، والحضور
+قبل الامتحانات، والقيود قبل الطلاب...) فلا يصطدم بأي قيد مرجعي، ويترك
+أي بيانات ليست من إنشائه كما هي تماماً. إن احتجت التراجع عن نسختك
+الاحتياطية بدلاً من ذلك فالطبقة الأولى جاهزة لك بأمر الاستعادة أعلاه.
+</div>
+</div>
+
+<!-- ======== 9. الأداء ======== -->
+<div class="chapter-header">
+  <div class="section-tag">الفصل التاسع</div>
+  <div class="section-title">الأداء والزمن المتوقع</div>
+  <div class="divider"></div>
+</div>
+
+<p class="p">
+الزمن الفعلي يتحدد بثلاثة عوامل: عدد السجلات، وحجم دفعة XML-RPC، وقوة
+السيرفر. الجدول التالي يعطي تقديرات واقعية لخادم متوسط (4 أنوية، 8GB
+ذاكرة، قرص SSD) عبر الشبكة المحلية. الأرقام تنمو شبه خطياً مع الهدف،
+فيمكنك استنتاج أي حجم وسيط بسهولة، والأهم: يمكنك دائماً تشغيل المراحل
+منفصلة بـ <code class="k">--only-phases</code> لتنظيم التوليد على
+فترات.
+</p>
+
+<table class="t">
+<thead><tr><th style="width:20%">المقياس</th><th style="width:17%">السجلات تقريباً</th><th style="width:19%">الزمن المتوقع</th><th>ملاحظات</th></tr></thead>
+<tbody>
+<tr><td>quick (200 طالب)</td><td>3,300</td><td>2 – 4 دقائق</td><td>جولة التحقق المثالية قبل الكامل.</td></tr>
+<tr><td>1,000 طالب</td><td>15,000</td><td>8 – 15 دقيقة</td><td>محاكاة كلية كبيرة أو جامعة صغيرة.</td></tr>
+<tr><td>full (5,000 طالب)</td><td>57,000</td><td>20 – 45 دقيقة</td><td>الجامعة الكاملة بكل الامتحانات والكشوف.</td></tr>
+</tbody>
+</table>
+
+<p class="p">
+ثلاث مقالب (ضبطات) عملية إن أردت شدها للحد الأقصى. ارفع
+<code class="k">--batch-size</code> إلى 200 على الخوادم القوية فيقل
+عدد الاستدعاءات إلى النصف. شغّل التوليد في ساعات خفوط الاستخدام
+(ليلاً مثلاً) لأن دفعات الإنشاء الكبيرة تستهلك عاملاً واحداً من
+عمال أودو طوال ثوانٍ متصلة. وإن كان خادمك يقطع الاتصالات الطويلة،
+انقص <code class="k">--batch-size</code> إلى 50 وستمر الدفعات أصغر
+وأخف — مع أن الاستئناف يحميك من أي انقطاع أصلاً.
+</p>
+
+<!-- ======== 10. التحقق بعد التوليد ======== -->
+<div class="chapter-header">
+  <div class="section-tag">الفصل العاشر</div>
+  <div class="section-title">التحقق بعد التوليد</div>
+  <div class="divider"></div>
+</div>
+
+<p class="p">
+بعد انتهاء التقرير بخطوة «تنبيه» واحدة على الأكثر، افتح واجهة OpenEduCat
+واجول في الشاشات التالية بالترتيب — كل شاشة تخبرك عن صحة مرحلة بعينها،
+وأي غرابة فيها تعيدها إلى فصل استكشاف الأخطاء. القائمة مرتبة من العام
+إلى التفصيلي، وتستغرق الجولة الكاملة خمس دقائق.
+</p>
+
+<ul class="ar">
+<li><span class="li-strong">الطلاب (OpenEduCat، الطلاب):</span> أكثر من
+5000 سجل بأسماء عربية رباعية؛ افتح أياً منها فترى رقم قيد يبدأ بـ
+<code class="k">YU</code>، وجنساً، وميلاداً، وهاتفاً يمنياً، وقيداً
+بالبرنامج والدفعة ومواد السنة الأولى.</li>
+<li><span class="li-strong">الدفعات:</span> 120 دفعة بأسماء عربية ورموز
+مضغوطة (مثل <code class="k">MBBS-21</code>) وحدود زمنية صحيحة.</li>
+<li><span class="li-strong">سجلات القبول:</span> 120 سجلاً بحالة «منتهٍ»،
+وكل سجل يعرض عدد طلباته؛ افتح الطلبات فترى المقبول بحالة «منتهٍ» مرتبطاً
+بطالبه، والمرفوض بحالة «مرفوض».</li>
+<li><span class="li-strong">جلسات الامتحانات:</span> جلسات بحالة «منتهٍ»
+وتقييم «درجة»؛ افتح إحداها فترى امتحاناتها الستة بتوقيتات وأساتذة
+مسؤولين، ثم نتائج الطلاب بدرجات وحضور/غياب.</li>
+<li><span class="li-strong">كشوف النتائج:</span> سجلات كشوف للسنة الأخيرة؛
+افتح أحدها فترى أسطر الطلاب بالمجموع والنسبة والتقدير محسوبة تلقائياً
+(ممتاز/جيد جداً/جيد/مقبول/راسب).</li>
+<li><span class="li-strong">رسوم الطلاب:</span> سطور دفعات لكل طالب
+بحالة «مسودة» وقيم تتناسب مع كلفة برنامجه — جاهزة لتوليد الفواتير
+من الزر الرسمي متى احتجت.</li>
+<li><span class="li-strong">البحث العالمي:</span> ابحث عن
+<code class="k">YU21</code> أو «دفعة 2021» فتقفز لك النتائج من كل
+الجهات — أسرع اختبار تكامل شامل.</li>
+</ul>
+
+<div class="note">
+<div class="n-title">عرض توضيحي جاهز في دقيقتين</div>
+لعرض النظام على الإدارة: افتح قائمة الطلاب وفلترها بالدفعة، ثم افتح
+كشف نتائج طالب واعرض سلسلة تقديراته، ثم أظهر سجل قبوله المرتبط — هذه
+الجولة الثلاثية تحكي قصة «التقديم حتى النتيجة» كاملة وتترك انطباعاً
+لا يتركه نظام فارغ أبداً.
+</div>
+
+<!-- ======== 11. استكشاف الأخطاء ======== -->
+<div class="chapter-header">
+  <div class="section-tag">الفصل الحادي عشر</div>
+  <div class="section-title">استكشاف الأخطاء</div>
+  <div class="divider"></div>
+</div>
+
+<p class="p">
+جمعنا هنا الأخطاء التي تظهر فعلاً في مثل هذه البيئات، مع سببها الجذري
+وحلها المباشر. القاعدة العامة قبل الجدول: رسالة الخطأ الكاملة تُطبع في
+التقرير <code class="k">generation_report.txt</code> ومعها أثر المكدس
+للأخطاء غير المتوقعة، فاربط التقرير بأي استفسار مستقبلي. وفي كل الأحوال
+تذكّر أن إعادة تشغيل الأمر نفسه تحل نصف الحالات مباشرة بفضل الاستئناف.
+</p>
+
+<table class="t">
+<thead><tr><th style="width:30%">العَرَض</th><th style="width:30%">السبب الغالب</th><th>الحل</th></tr></thead>
+<tbody>
+<tr><td>فشل تسجيل الدخول أو انتهت مهلة الاتصال</td><td>رابط/منفذ خاطئ أو الجهاز لا يرى السيرفر</td>
+<td>تحقق بـ <span class="mono">curl http://SERVER:8069/web/login</span>؛ إن لم يصل فافحص جدار الحماية أو أن المنفذ منشور في <span class="mono">docker-compose.yml</span>.</td></tr>
+<tr><td>AccessError أثناء إنشاء سجلات</td><td>مستخدم API بلا صلاحيات كافية</td>
+<td>أضف مجموعة «الإعدادات» لمستخدم <span class="mono">api_generator</span> من شاشة المستخدمين ثم أعد الأمر.</td></tr>
+<tr><td>«المرحلة X ستتخطى — نماذج غير مثبتة»</td><td>وحدة OpenEduCat غير مثبتة</td>
+<td>ثبّت الوحدة المذكورة من قائمة التطبيقات ثم أعد التشغيل؛ المراحل الأخرى اكتملت سلفاً وستُستأنف هذه فقط.</td></tr>
+<tr><td>انقطاع في منتصف التوليد (شبكة/إعادة تشغيل)</td><td>أمر طويل أو انقطاع شبكة</td>
+<td>أعد الأمر نفسه — الاستئناف يكمل الناقص فقط. للتقليل من الانقطاعات: <span class="mono">--batch-size 50</span>.</td></tr>
+<tr><td>«Code should be unique» لبرنامج أو دفعة</td><td>بيانات سابقة بنفس الرمز من تجارب قديمة</td>
+<td>السكريبت يتخطى الموجود تلقائياً؛ إن أردت البدء نظيفاً استخدم <span class="mono">--purge</span> أولاً (إن كانت من إنشائه) أو امسح يدوياً من الواجهة.</td></tr>
+<tr><td>الخادم بطأء واضح أثناء الدفعات الكبيرة</td><td>عمال أودو قليلة أو ذاكرة محدودة</td>
+<td>قلل <span class="mono">--batch-size</span>، وشغّل ليلاً، أو جزّئ المراحل بـ <span class="mono">--only-phases</span>.</td></tr>
+<tr><td>«لا يوجد منتج خدمي ولا يمكن إنشاؤه»</td><td>وحدة المنتجات معطلة أو قاعدة بلا منتجات</td>
+<td>فعّل وحدة <span class="mono">product</span> من التطبيقات (مثبتة افتراضياً مع أغلب المنشآت) ثم أعد المرحلة 5.</td></tr>
+<tr><td>درجات أو تواريخ ترفض الإنشاء</td><td>قيود النموذج المنطقية</td>
+<td>السكريبت يراعيها تصميماً؛ إن ظهرت فغالباً تعديل يدوي لاحق على البيانات — راجع رسالة القيد في التقرير وستحدد الحقل.</td></tr>
+</tbody>
+</table>
+
+</div><!-- /main-content -->
+
+<!-- ==================== صفحة الختام ==================== -->
+<div class="ending">
+  <div class="frame"></div>
+  <div class="mid">
+    <div class="e-kicker">مرجع سريع — احتفظ بهذه الصفحة</div>
+    <div class="e-title">جاهز لإحياء نظامك الجامعي</div>
+    <div class="e-text">
+      انقل الملفين إلى جهاز التشغيل، وخذ نسختك الاحتياطية، ثم ابدأ بالجولة
+      السريعة. القاعدة الذهبية رفيقك دائماً: كل شيء عبر واجهة أودو الرسمية،
+      ولا SQL مباشر مهما كانت المزايا المغرية.
+    </div>
+    <div class="e-cmd"># 1) البروفة الآمنة على السيرفر الوهمي
+python3 mock_odoo_server.py 8169
+
+# 2) جولة التجربة على نظامك الحقيقي
+python3 openeducat_yemen_generator.py \
+  --url http://SERVER:8069 --db university \
+  --user api_generator --password 'PASS' \
+  --preset quick --yes
+
+# 3) التوليد الكامل (5000+ طالب)
+python3 openeducat_yemen_generator.py \
+  --url http://SERVER:8069 --db university \
+  --user api_generator --password 'PASS' \
+  --preset full --yes
+
+# 4) التراجع الكامل متى شئت
+python3 openeducat_yemen_generator.py \
+  --url http://SERVER:8069 --db university \
+  --user api_generator --password 'PASS' \
+  --purge --yes</div>
+    <div class="e-foot">OPENEDUCAT DATA GENERATION GUIDE — Z.AI · SEPTEMBER 2026</div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# مخرجات المولّد (إن شغّلته داخل مجلد المستودع)
+openeducat_manifest.json
+generation_report.txt
+*.log
+
+# نظام التشغيل / المحررات
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Docker المحلي
+db-data/
+odoo-data/

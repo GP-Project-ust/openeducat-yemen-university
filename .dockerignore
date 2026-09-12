@@ -1,0 +1,10 @@
+.git
+.gitignore
+db_dumps
+db_init
+config
+docs
+README.md
+LICENSE
+.env
+*.md

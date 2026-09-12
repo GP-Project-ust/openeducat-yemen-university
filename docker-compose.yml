@@ -1,0 +1,69 @@
+# =============================================================================
+# جامعة يمنية متكاملة على Odoo 17 + OpenEduCat — Docker Compose
+# =============================================================================
+# الرفع:      docker compose up -d
+# المتصفح:    http://localhost:8069   (admin / admin)
+# الوصف الكامل في README.md
+
+name: openeducat-yemen
+
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-university}
+      POSTGRES_USER: ${DB_USER:-odoo}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-odoo}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      # نسخة القاعدة الجاهزة (جامعة يمنية كاملة) — تُستعاد مرة واحدة أول تشغيل
+      - ./db_dumps:/dumps:ro
+      - ./db_init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-odoo} -d ${DB_NAME:-university}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  odoo:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      HOST: db
+      PORT: 5432
+      USER: ${DB_USER:-odoo}
+      PASSWORD: ${DB_PASSWORD:-odoo}
+      DB_NAME: ${DB_NAME:-university}
+    ports:
+      - "${ODOO_PORT:-8069}:8069"
+    volumes:
+      - odoo-data:/var/lib/odoo
+      - ./config:/etc/odoo:ro
+    command: ["-d", "${DB_NAME:-university}"]
+
+  # مولّد البيانات (اختياري): يشغّل التهيئة العربية + توليد جامعة كاملة
+  # يُستدعى يدوياً عند إعادة التوليد من الصفر:
+  #   docker compose --profile seed run --rm seeder
+  seeder:
+    build: .
+    profiles: ["seed"]
+    depends_on:
+      odoo:
+        condition: service_started
+    environment:
+      ODOO_URL: http://odoo:8069
+      ODOO_DB: ${DB_NAME:-university}
+      ODOO_USER: admin
+      ODOO_PASSWORD: ${ADMIN_PASSWORD:-admin}
+    command:
+      ["python3", "/opt/scripts/bootstrap.py", "--generate", "--",
+       "--preset", "full", "--yes"]
+    restart: "no"
+
+volumes:
+  db-data:
+  odoo-data:
